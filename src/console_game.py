@@ -1,6 +1,6 @@
-from src.tictactoe import TicTacToe
-from src.tictactoe.exceptions import CellException
-from src.tictactoe.states import GameState
+from tictactoe import TicTacToe
+from tictactoe.exceptions import CellException
+from tictactoe.states import GameState
 
 if __name__ == "__main__":
     game = TicTacToe()
@@ -12,7 +12,7 @@ if __name__ == "__main__":
     print("To quit the game, enter 'quit'")
     while True:
         command = input(f"Enter coordinates {game.player.name}: ")
-        if command == "exit":
+        if command == "quit":
             break
         try:
             x, y = [int(i) for i in command]
