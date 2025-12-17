@@ -33,6 +33,7 @@ if __name__ == "__main__":
                     if game_state == GameState.NOT_STARTED:
                         print("Draw")
                     game.finish()
+                    input("Press enter to quit...")
                     break
             else:
                 print("Invalid coordinates")
