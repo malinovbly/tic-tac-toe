@@ -9,8 +9,11 @@ if __name__ == "__main__":
     print("Tic-tac-toe")
     print(game.board)
     print("The coordinate format is 'xy', where x and y can be 1, 2, or 3")
+    print("To quit the game, enter 'quit'")
     while True:
         command = input(f"Enter coordinates {game.player.name}: ")
+        if command == "exit":
+            break
         try:
             x, y = [int(i) for i in command]
             if len(command) == 2 and x in range(1, 4) and y in range(1, 4):
