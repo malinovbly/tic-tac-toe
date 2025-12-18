@@ -42,7 +42,7 @@ if __name__ == "__main__":
                     print(game.board)
                     if game_state == GameState.X_WINS: print("X Wins")
                     if game_state == GameState.O_WINS: print("O Wins")
-                    if game_state == GameState.NOT_STARTED: print("Draw")
+                    if game_state == GameState.DRAW: print("Draw")
                     game.finish()
                     input("Press enter to start new game")
                     game.start()
