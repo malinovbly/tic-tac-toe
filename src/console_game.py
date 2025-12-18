@@ -1,16 +1,30 @@
+import os
+
 from tictactoe import TicTacToe
 from tictactoe.exceptions import CellException
 from tictactoe.states import GameState
+
+
+def clear_console():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+
+def invalid_coordinates():
+    input("Invalid coordinates, press enter")
+
 
 if __name__ == "__main__":
     game = TicTacToe()
     game.start()
 
-    print("Tic-tac-toe")
-    print(game.board)
+    print("Tic-tac-toe\n")
     print("The coordinate format is 'xy', where x and y can be 1, 2, or 3")
-    print("To quit the game, enter 'quit'")
+    print("To quit the game, type 'quit'\n")
+    input("Press enter to start")
+
     while True:
+        clear_console()
+        print(game.board)
         command = input(f"Enter coordinates {game.player.name}: ")
         if command == "quit":
             break
@@ -18,24 +32,21 @@ if __name__ == "__main__":
             x, y = [int(i) for i in command]
             if len(command) == 2 and x in range(1, 4) and y in range(1, 4):
                 try:
-                    game.turn(x-1, y-1)
+                    game.turn(x - 1, y - 1)
                 except CellException as e:
-                    print("Invalid coordinates")
-                    continue
+                    invalid_coordinates()
                 game.scan_board()
                 game_state = game.state
-                print(game.board, "\n")
                 if game_state != GameState.PLAYING:
-                    if game_state == GameState.X_WINS:
-                        print("X Wins")
-                    if game_state == GameState.O_WINS:
-                        print("O Wins")
-                    if game_state == GameState.NOT_STARTED:
-                        print("Draw")
+                    clear_console()
+                    print(game.board)
+                    if game_state == GameState.X_WINS: print("X Wins")
+                    if game_state == GameState.O_WINS: print("O Wins")
+                    if game_state == GameState.NOT_STARTED: print("Draw")
                     game.finish()
-                    input("Press enter to quit...")
-                    break
+                    input("Press enter to start new game")
+                    game.start()
             else:
-                print("Invalid coordinates")
+                invalid_coordinates()
         except ValueError:
-            print("Invalid coordinates")
+            invalid_coordinates()
