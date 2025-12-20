@@ -5,7 +5,7 @@ class Board:
 
     def __repr__(self):
         res = ""
-        for i in range(3):
+        for i in range(2, -1, -1):
             res += f"{self.get_cell(i, 0)} {self.get_cell(i, 1)} {self.get_cell(i, 2)}\n"
         return res
 
